@@ -1,5 +1,10 @@
 DOMAIN-SUFFIX,niceduck.lol
 DOMAIN-SUFFIX,emby.moe
 DOMAIN-SUFFIX,xxlb.net
+//Lyrebird
 DOMAIN-SUFFIX,lyrebirdemby.com
+//PiliPili
 DOMAIN-SUFFIX,pilipiliultra.com
+//DPX
+DOMAIN,123456.buzz
+IP-CIDR,104.161.22.116/32,no-resolve
