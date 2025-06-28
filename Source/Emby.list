@@ -5,6 +5,5 @@ DOMAIN-SUFFIX,xxlb.net
 DOMAIN-SUFFIX,lyrebirdemby.com
 //PiliPili
 DOMAIN-SUFFIX,pilipiliultra.com
-//DPX
-DOMAIN,123456.buzz
-IP-CIDR,104.161.22.116/32,no-resolve
+//youno
+DOMAIN-SUFFIX,younoyes.com
