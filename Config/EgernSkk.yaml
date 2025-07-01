@@ -68,6 +68,7 @@ policy_groups:
     name: Select
     policies:
     - Viking
+    - 7li7li
     flatten: true
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png
     hidden: false
@@ -148,6 +149,13 @@ policy_groups:
     - https://sub.store/download/Viking?target=Egern
     timeout: 2
     icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/ViKinglinks.png
+- external:
+    name: 7li7li
+    type: select
+    urls:
+    - https://sub.store/download/7li7li-H?target=Egern
+    timeout: 2
+    icon: https://raw.githubusercontent.com/black2c7/TheMagic-Icons/main/Icons/VPS31.png
 rules:
 - rule_set:
     match: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Advertising.list
