@@ -1,0 +1,146 @@
+# url 里填写自己的订阅,名称不能重复
+proxy-providers:
+  provider1:
+    url: ""
+    type: http
+    interval: 86400
+    health-check: {enable: true,url: "http://www.apple.com/library/test/success.html", interval: 300}
+
+mixed-port: 7890
+ipv6: true
+allow-lan: false
+unified-delay: true
+tcp-concurrent: true
+
+geodata-mode: true
+geox-url:
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
+  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+
+find-process-mode: strict
+global-client-fingerprint: chrome
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+
+tun:
+  enable: true
+  stack: system
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+
+dns:
+  enable: true
+  ipv6: true
+  enhanced-mode: fake-ip
+  fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "+.local"
+    - "+.market.xiaomi.com"
+  nameserver:
+    - system
+
+# 锚点参数
+url-test: &url-test {type: url-test, url: http://www.apple.com/library/test/success.html, interval: 300, tolerance: 50, timeout: 2000, lazy: true, include-all: true}
+c: &c {type: http, behavior: classical, format: text, interval: 86400}
+
+proxy-groups:
+
+  - name: Final
+    type: select
+    proxies: [🇭🇰 HK, 🇯🇵 JP, Proxy]
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+
+  - name: Proxy
+    type: select
+    include-all: true
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png
+
+  - name: AI
+    type: select
+    proxies: [🇺🇸 US, 🇪🇺 EU, Proxy]
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
+
+  - name: Streaming!CN
+    type: select
+    proxies: [Final, Proxy]
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/DisneyPlus.png
+
+  - name: StreamingCN
+    type: select
+    proxies: [DIRECT, Proxy, 🇭🇰 HK]
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Bili.png
+
+  #分隔,下面是地区分组
+  - name: 🇭🇰 HK
+    <<: *url-test
+    filter: "^(?=.*((?i)(🇭🇰|🇹🇼|🇲🇴|香港|台湾|澳门|\b(HK|Hong|TW|Tai|Taiwan|MO|Macao)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
+
+  - name: 🇯🇵 JP
+    <<: *url-test
+    filter: "^(?=.*((?i)(🇯🇵|🇰🇷|日本|韩国|\b(JP|Japan|KR|Korea)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
+
+  - name: 🇸🇬 SG
+    <<: *url-test
+    filter: "^(?=.*((?i)(🇸🇬|新加坡|狮|\b(SG|Singapore)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
+
+  - name: 🇺🇸 US
+    <<: *url-test
+    filter: "^(?=.*((?i)(🇺🇸|美国|\b(US|United States)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
+
+  - name: 🇪🇺 EU
+    <<: *url-test
+    filter: "(?i)^(?!.*emby).*(🇧🇪|🇧🇬|🇨🇿|🇩🇰|🇩🇪|🇪🇪|🇮🇪|🇬🇷|🇪🇸|🇫🇷|🇭🇷|🇮🇹|🇨🇾|🇱🇻|🇱🇹|🇱🇺|🇭🇺|🇲🇹|🇳🇱|🇦🇹|🇵🇱|🇵🇹|🇷🇴|🇸🇮|🇸🇰|🇫🇮|🇸🇪|🇨🇭|🇬🇧|🇪🇺).*"
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/DE.png
+
+rule-providers:
+  Direct+: {<<: *c, path: ./rules/Direct+.list, url: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Direct+.list}
+  AI: {<<: *c, path: ./rules/AI.list,  url: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/AI.list}
+  Emby: {<<: *c, path: ./rules/Emby.list,  url: https://raw.githubusercontent.com/yugubbk/Surge/master/Source/Emby.list}
+  Streaming!CN: {<<: *c, path: ./rules/Streaming!CN.list,  url: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Streaming/!CN.list}
+  StreamingCN: {<<: *c, path: ./rules/StreamingCN.list,  url: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Streaming/CN.list}
+  Proxy: {<<: *c, path: ./rules/Proxy.list,  url: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Proxy.list}
+  Direct: {<<: *c, path: ./rules/Direct.list,  url: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Direct.list}
+  DNSHijacking: {<<: *c, path: ./rules/DNSHijacking.list,  url: https://raw.githubusercontent.com/yugubbk/Surge/master/Source/DNSHijacking.list}
+
+rules:
+  - RULE-SET,Direct+,DIRECT
+  - RULE-SET,AI,AI
+  - RULE-SET,Emby,Streaming!CN
+  - IP-ASN,59930,🇺🇸 US,no-resolveS
+  - IP-ASN,62041,🇪🇺 EU,no-resolve
+  - IP-ASN,62014,🇸🇬 SG,no-resolve
+  - RULE-SET,Streaming!CN,Streaming!CN
+  - RULE-SET,StreamingCN,StreamingCN
+  - RULE-SET,Proxy,Final
+  - RULE-SET,Direct,DIRECT
+  - RULE-SET,DNSHijacking,Final
+  - GEOIP,lan,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,Final
