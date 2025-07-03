@@ -80,7 +80,7 @@ policy_groups:
     - Select
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
 - select:
-    name: Streaming!CN
+    name: Streaming
     policies:
     - Final
     - Select
@@ -88,12 +88,11 @@ policy_groups:
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/DisneyPlus.png
     hidden: false
 - select:
-    name: StreamingCN
+    name: Apple
     policies:
+    - Final
     - DIRECT
-    - Select
-    - 🇭🇰 HK
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Bili.png
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Apple.png
 - select:
     name: CDN & Download
     policies:
@@ -159,9 +158,6 @@ policy_groups:
     icon: https://raw.githubusercontent.com/black2c7/TheMagic-Icons/main/Icons/VPS31.png
 rules:
 - rule_set:
-    match: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Direct+.list
-    policy: DIRECT
-- rule_set:
     match: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Advertising.list
     policy: REJECT
 - rule_set:
@@ -171,41 +167,26 @@ rules:
     match: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Malicious.list
     policy: REJECT
 - rule_set:
-    match: https://raw.githubusercontent.com/EAlyce/conf/main/Rule/FQNovelAdvertising.list
+    match: https://ruleset.skk.moe/List/domainset/reject.conf
     policy: REJECT
 - rule_set:
-    match: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/AI.list
-    policy: AI
-- rule_set:
-    match: https://raw.githubusercontent.com/yugubbk/Surge/master/Source/Emby.list
-    policy: Streaming!CN
-- asn:
-    match: '59930'
-    policy: 🇺🇸 US
-    no_resolve: true
-    disabled: false
-- asn:
-    match: '62014'
-    policy: 🇸🇬 SG
-    no_resolve: true
-    disabled: false
-- asn:
-    match: '62041'
-    policy: 🇪🇺 EU
-    no_resolve: true
-    disabled: false
-- rule_set:
-    match: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Streaming/!CN.list
-    policy: Streaming!CN
-- rule_set:
-    match: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Streaming/CN.list
-    policy: StreamingCN
+    match: https://ruleset.skk.moe/List/domainset/speedtest.conf
+    policy: Select
 - rule_set:
     match: https://ruleset.skk.moe/List/domainset/cdn.conf
     policy: CDN & Download
 - rule_set:
     match: https://ruleset.skk.moe/List/non_ip/cdn.conf
     policy: CDN & Download
+- rule_set:
+    match: https://raw.githubusercontent.com/yugubbk/Surge/master/Source/Emby.list
+    policy: Streaming
+- rule_set:
+    match: https://ruleset.skk.moe/List/non_ip/stream.conf
+    policy: Streaming
+- rule_set:
+    match: https://ruleset.skk.moe/List/non_ip/telegram.conf
+    policy: Final
 - rule_set:
     match: https://ruleset.skk.moe/List/domainset/apple_cdn.conf
     policy: CDN & Download
@@ -219,16 +200,59 @@ rules:
     match: https://ruleset.skk.moe/List/non_ip/download.conf
     policy: CDN & Download
 - rule_set:
-    match: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Proxy.list
-    policy: Final
-- rule_set:
-    match: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Direct.list
+    match: https://ruleset.skk.moe/List/non_ip/apple_cn.conf
     policy: DIRECT
 - rule_set:
-    match: https://raw.githubusercontent.com/yugubbk/Surge/master/Source/DNSHijacking.list
+    match: https://ruleset.skk.moe/List/non_ip/apple_services.conf
+    policy: Apple
+- rule_set:
+    match: https://ruleset.skk.moe/List/non_ip/microsoft.conf
+    policy: Apple
+- rule_set:
+    match: https://ruleset.skk.moe/List/non_ip/ai.conf
+    policy: AI
+- rule_set:
+    match: https://ruleset.skk.moe/List/non_ip/global.conf
     policy: Final
-- geoip:
-    match: CN
+- rule_set:
+    match: https://ruleset.skk.moe/List/non_ip/domestic.conf
+    policy: DIRECT
+- rule_set:
+    match: https://ruleset.skk.moe/List/non_ip/direct.conf
+    policy: DIRECT
+- rule_set:
+    match: https://ruleset.skk.moe/List/non_ip/lan.conf
+    policy: DIRECT
+- rule_set:
+    match: https://ruleset.skk.moe/List/ip/reject.conf
+    policy: REJECT
+    disabled: false
+- asn:
+    match: '59930'
+    policy: 🇺🇸 US
+- asn:
+    match: '62014'
+    policy: 🇸🇬 SG
+- asn:
+    match: '62041'
+    policy: 🇪🇺 EU
+- rule_set:
+    match: https://ruleset.skk.moe/List/ip/telegram.conf
+    policy: Final
+- rule_set:
+    match: https://ruleset.skk.moe/List/ip/stream.conf
+    policy: Streaming
+- rule_set:
+    match: https://ruleset.skk.moe/List/ip/lan.conf
+    policy: DIRECT
+- rule_set:
+    match: https://ruleset.skk.moe/List/ip/domestic.conf
+    policy: DIRECT
+- rule_set:
+    match: https://ruleset.skk.moe/List/ip/china_ip.conf
+    policy: DIRECT
+- rule_set:
+    match: https://ruleset.skk.moe/List/ip/china_ip_ipv6.conf
     policy: DIRECT
 - default:
     policy: Final
