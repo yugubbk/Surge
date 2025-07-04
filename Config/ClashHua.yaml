@@ -133,9 +133,9 @@ rules:
   - RULE-SET,Direct+,DIRECT
   - RULE-SET,AI,AI
   - RULE-SET,Emby,Streaming!CN
-  - IP-ASN,59930,🇺🇸 US,no-resolveS
-  - IP-ASN,62041,🇪🇺 EU,no-resolve
+  - IP-ASN,59930,🇺🇸 US,no-resolve
   - IP-ASN,62014,🇸🇬 SG,no-resolve
+  - IP-ASN,62041,🇪🇺 EU,no-resolve
   - RULE-SET,Streaming!CN,Streaming!CN
   - RULE-SET,StreamingCN,StreamingCN
   - RULE-SET,Proxy,Final
