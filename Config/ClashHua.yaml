@@ -67,31 +67,35 @@ url-test: &url-test {type: url-test, url: http://www.apple.com/library/test/succ
 c: &c {type: http, behavior: classical, format: text, interval: 86400}
 
 proxy-groups:
-
   - name: Final
     type: select
-    proxies: [🇭🇰 HK, 🇯🇵 JP, Proxy]
+    proxies: [🇭🇰 HK, 🇯🇵 JP, Select]
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 
-  - name: Proxy
+  - name: Select
     type: select
     include-all: true
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png
 
   - name: AI
     type: select
-    proxies: [🇺🇸 US, 🇪🇺 EU, Proxy]
+    proxies: [🇺🇸 US, 🇪🇺 EU, Select]
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
 
-  - name: Streaming!CN
+  - name: Streaming
     type: select
-    proxies: [Final, Proxy]
+    proxies: [Final, Select]
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/DisneyPlus.png
 
-  - name: StreamingCN
+  - name: Apple
     type: select
-    proxies: [DIRECT, Proxy, 🇭🇰 HK]
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Bili.png
+    proxies: [Final, DIRECT]
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Apple.png
+
+  - name: CDN & Download
+    type: select
+    proxies: [Final, Select, DIRECT]
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Microsoft.png
 
   #分隔,下面是地区分组
   - name: 🇭🇰 HK
@@ -120,27 +124,264 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/DE.png
 
 rule-providers:
-  Direct+: {<<: *c, path: ./rules/Direct+.list, url: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Direct+.list}
-  AI: {<<: *c, path: ./rules/AI.list,  url: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/AI.list}
-  Emby: {<<: *c, path: ./rules/Emby.list,  url: https://raw.githubusercontent.com/yugubbk/Surge/master/Source/Emby.list}
-  Streaming!CN: {<<: *c, path: ./rules/Streaming!CN.list,  url: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Streaming/!CN.list}
-  StreamingCN: {<<: *c, path: ./rules/StreamingCN.list,  url: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Streaming/CN.list}
-  Proxy: {<<: *c, path: ./rules/Proxy.list,  url: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Proxy.list}
-  Direct: {<<: *c, path: ./rules/Direct.list,  url: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Direct.list}
-  DNSHijacking: {<<: *c, path: ./rules/DNSHijacking.list,  url: https://raw.githubusercontent.com/yugubbk/Surge/master/Source/DNSHijacking.list}
+  # 测速网站
+  speedtest:
+    type: http
+    behavior: domain
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/domainset/speedtest.txt
+    path: ./sukkaw_ruleset/speedtest.txt
 
-rules:
-  - RULE-SET,Direct+,DIRECT
-  - RULE-SET,AI,AI
-  - RULE-SET,Emby,Streaming!CN
-  - IP-ASN,59930,🇺🇸 US,no-resolve
-  - IP-ASN,62014,🇸🇬 SG,no-resolve
-  - IP-ASN,62041,🇪🇺 EU,no-resolve
-  - RULE-SET,Streaming!CN,Streaming!CN
-  - RULE-SET,StreamingCN,StreamingCN
-  - RULE-SET,Proxy,Final
-  - RULE-SET,Direct,DIRECT
+  # CDN 相关
+  cdn_domainset:
+    type: http
+    behavior: domain
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/domainset/cdn.txt
+    path: ./sukkaw_ruleset/cdn_domainset.txt
+
+  cdn_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/non_ip/cdn.txt
+    path: ./sukkaw_ruleset/cdn_non_ip.txt
+
+  # Emby
+  Emby:
+    <<: *c
+    path: ./rules/Emby.list
+    url: https://raw.githubusercontent.com/yugubbk/Surge/master/Source/Emby.list
+
+  # 流媒体相关
+  stream_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/non_ip/stream.txt
+    path: ./sukkaw_ruleset/stream_non_ip.txt
+
+  # Telegram 相关
+  telegram_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/non_ip/telegram.txt
+    path: ./sukkaw_ruleset/telegram_non_ip.txt
+
+  # Apple 相关
+  apple_cdn:
+    type: http
+    behavior: domain
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/domainset/apple_cdn.txt
+    path: ./sukkaw_ruleset/apple_cdn.txt
+
+  microsoft_cdn_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/non_ip/microsoft_cdn.txt
+    path: ./sukkaw_ruleset/microsoft_cdn_non_ip.txt
+
+  # 下载相关
+  download_domainset:
+    type: http
+    behavior: domain
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/domainset/download.txt
+    path: ./sukkaw_ruleset/download_domainset.txt
+
+  download_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/non_ip/download.txt
+    path: ./sukkaw_ruleset/download_non_ip.txt
+
+  # Apple CN 相关
+  apple_cn_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/non_ip/apple_cn.txt
+    path: ./sukkaw_ruleset/apple_cn_non_ip.txt
+
+  # Apple 和 Microsoft 服务
+  apple_services:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/non_ip/apple_services.txt
+    path: ./sukkaw_ruleset/apple_services.txt
+
+  microsoft_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/non_ip/microsoft.txt
+    path: ./sukkaw_ruleset/microsoft_non_ip.txt
+
+  # AI 相关
+  ai_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/non_ip/ai.txt
+    path: ./sukkaw_ruleset/ai_non_ip.txt
+
+  # 全球和国内域名
+  global_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/non_ip/global.txt
+    path: ./sukkaw_ruleset/global_non_ip.txt
+
+  domestic_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/non_ip/domestic.txt
+    path: ./sukkaw_ruleset/domestic_non_ip.txt
+
+  direct_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/non_ip/direct.txt
+    path: ./sukkaw_ruleset/direct_non_ip.txt
+
+  # 内网相关
+  lan_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/non_ip/lan.txt
+    path: ./sukkaw_ruleset/lan_non_ip.txt
+
+  # DNS 劫持
+  DNSHijacking:
+    <<: *c
+    path: ./rules/DNSHijacking.list
+    url: https://raw.githubusercontent.com/yugubbk/Surge/master/Source/DNSHijacking.list 
+
+  # Telegram IP
+  telegram_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/ip/telegram.txt
+    path: ./sukkaw_ruleset/telegram_ip.txt
+
+  # 流媒体 IP
+  stream_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/ip/stream.txt
+    path: ./sukkaw_ruleset/stream_ip.txt
+
+  # 局域网 IP
+  lan_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/ip/lan.txt
+    path: ./sukkaw_ruleset/lan_ip.txt
+
+  # 国内 IP
+  domestic_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/ip/domestic.txt
+    path: ./sukkaw_ruleset/domestic_ip.txt
+
+  china_ip:
+    type: http
+    behavior: ipcidr
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/ip/china_ip.txt
+    path: ./sukkaw_ruleset/china_ip.txt
+
+  china_ip_ipv6:
+    type: http
+    behavior: ipcidr
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/ip/china_ip_ipv6.txt
+    path: ./sukkaw_ruleset/china_ipv6.txt
+
+rules:  
+  # 测速网站
+  - RULE-SET,speedtest,Select
+  # CDN 相关
+  - RULE-SET,cdn_domainset,CDN & Download
+  - RULE-SET,cdn_non_ip,CDN & Download
+  # Emby
+  - RULE-SET,Emby,Streaming
+  # 流媒体
+  - RULE-SET,stream_non_ip,Streaming
+  # Telegram
+  - RULE-SET,telegram_non_ip,Final
+  # Apple 和 Microsoft CDN
+  - RULE-SET,apple_cdn,CDN & Download
+  - RULE-SET,microsoft_cdn_non_ip,CDN & Download
+  # 下载相关
+  - RULE-SET,download_domainset,CDN & Download
+  - RULE-SET,download_non_ip,CDN & Download
+  # Apple CN
+  - RULE-SET,apple_cn_non_ip,DIRECT
+  # Apple 和 Microsoft 服务
+  - RULE-SET,apple_services,Apple
+  - RULE-SET,microsoft_non_ip,Apple
+  # AI
+  - RULE-SET,ai_non_ip,AI
+  # 全球域名
+  - RULE-SET,global_non_ip,Final
+  # 国内域名
+  - RULE-SET,domestic_non_ip,DIRECT
+  - RULE-SET,direct_non_ip,DIRECT
+  # 内网域名
+  - RULE-SET,lan_non_ip,DIRECT
+  # DNS 劫持
   - RULE-SET,DNSHijacking,Final
-  - GEOIP,lan,DIRECT
-  - GEOIP,CN,DIRECT
+  # Telegram ASN
+  - IP-ASN,59930,🇺🇸 US
+  - IP-ASN,62014,🇸🇬 SG
+  - IP-ASN,62041,🇪🇺 EU
+  # Telegram IP
+  - RULE-SET,telegram_ip,Final
+  # 流媒体 IP
+  - RULE-SET,stream_ip,Streaming
+  # 局域网 IP
+  - RULE-SET,lan_ip,DIRECT
+  # 国内 IP
+  - RULE-SET,domestic_ip,DIRECT
+  - RULE-SET,china_ip,DIRECT
+  - RULE-SET,china_ip_ipv6,DIRECT
+  # 兜底规则
   - MATCH,Final
