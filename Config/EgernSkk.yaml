@@ -84,6 +84,8 @@ policy_groups:
     name: Streaming
     policies:
     - Final
+    - 🇺🇸 US
+    - 🇪🇺 EU
     - Select
     flatten: false
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/DisneyPlus.png
@@ -135,6 +137,7 @@ policy_groups:
     filter: ^(?=.*((?i)(🇺🇸|美国|\b(US|United States)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$
     timeout: 2
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
+    hidden: false
 - auto_test:
     name: 🇪🇺 EU
     policies:
@@ -155,8 +158,10 @@ policy_groups:
     type: select
     urls:
     - https://sub.store/download/7li7li-H?target=Egern
+    filter: CT|3N|CN2GIA
     timeout: 2
     icon: https://raw.githubusercontent.com/black2c7/TheMagic-Icons/main/Icons/VPS31.png
+    hidden: false
 rules:
 - rule_set:
     match: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Advertising.list
