@@ -69,7 +69,7 @@ policy_groups:
     name: Select
     policies:
     - Viking
-    - 7li7li
+    - Linkeless
     flatten: true
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png
     hidden: false
@@ -154,13 +154,12 @@ policy_groups:
     timeout: 2
     icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/ViKinglinks.png
 - external:
-    name: 7li7li
+    name: Linkeless
     type: select
     urls:
-    - https://sub.store/download/7li7li-H?target=Egern
-    filter: CT|3N|CN2GIA
+    - https://sub.store/download/Linkeless?target=Egern
     timeout: 2
-    icon: https://raw.githubusercontent.com/black2c7/TheMagic-Icons/main/Icons/VPS31.png
+    icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/Linkeless.png
     hidden: false
 rules:
 - rule_set:
