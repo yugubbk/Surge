@@ -273,9 +273,6 @@ mitm:
     includes:
     - www.google.cn
 modules:
-- name: ' iRingo: ✈ TestFlight'
-  url: https://github.com/NSRingo/TestFlight/releases/latest/download/iRingo.TestFlight.sgmodule
-  enabled: true
 - name: Youtube (Music) Enhance
   url: https://raw.githubusercontent.com/Maasea/sgmodule/master/YouTube.Enhance.sgmodule
   compat_arguments:
