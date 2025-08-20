@@ -65,7 +65,7 @@ dns:
 # 锚点参数
 url-test: &url-test {type: url-test, url: http://www.apple.com/library/test/success.html, interval: 300, tolerance: 50, timeout: 2000, lazy: true, include-all: true}
 c: &c {type: http, behavior: classical, format: text, interval: 86400}
-# smart: &smart {type: smart, interval: 200, lazy: true, url: 'http://www.apple.com/library/test/success.html', hidden: true, uselightgbm: true}
+# smart: &smart {type: smart, include-all: true, interval: 300, url: 'http://www.apple.com/library/test/success.html', hidden: true, uselightgbm: true}
 
 proxy-groups:
   - name: Final
