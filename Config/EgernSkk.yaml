@@ -273,6 +273,9 @@ mitm:
     includes:
     - www.google.cn
 modules:
+- name: ' iRingo: 🌤 WeatherKit'
+  url: https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.sgmodule
+  enabled: true
 - name: Youtube (Music) Enhance
   url: https://raw.githubusercontent.com/Maasea/sgmodule/master/YouTube.Enhance.sgmodule
   compat_arguments:
