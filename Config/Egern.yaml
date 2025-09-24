@@ -167,7 +167,7 @@ policy_groups:
     type: select
     urls:
     - https://sub.store/download/7li7li-v?target=Egern
-    filter: ^(?!.*((?i)\b深圳移动\b)).*$
+    filter: ^(?!.*((?i)\bSZCM\b)).*$
     timeout: 2
     icon: https://raw.githubusercontent.com/cc63/ICON/main/icons/BigBus.png
     hidden: false
