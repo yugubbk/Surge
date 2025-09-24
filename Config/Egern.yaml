@@ -70,6 +70,7 @@ policy_groups:
     policies:
     - Viking
     - Linkeless
+    - 7li7li
     flatten: true
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png
     hidden: false
@@ -160,6 +161,15 @@ policy_groups:
     - https://sub.store/download/Linkeless?target=Egern
     timeout: 2
     icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/Linkeless.png
+    hidden: false
+- external:
+    name: 7li7li
+    type: select
+    urls:
+    - https://sub.store/download/7li7li-v?target=Egern
+    filter: ^(?!.*((?i)\b深圳移动\b)).*$
+    timeout: 2
+    icon: https://raw.githubusercontent.com/cc63/ICON/main/icons/BigBus.png
     hidden: false
 rules:
 - rule_set:
