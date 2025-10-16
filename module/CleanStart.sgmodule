@@ -1,0 +1,16 @@
+#!name=去开屏广告
+
+[Rule]
+
+[URL Rewrite]
+
+[Body Rewrite]
+
+[Map Local]
+# 闲鱼开屏广告
+^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlecommerce\.splash\.ads data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+[Script]
+
+[MITM]
+hostname = 
