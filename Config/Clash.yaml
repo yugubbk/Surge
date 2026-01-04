@@ -63,7 +63,7 @@ dns:
     - system
 
 # 锚点参数
-url-test: &url-test {type: url-test, url: http://www.apple.com/library/test/success.html, interval: 300, tolerance: 50, timeout: 2000, lazy: true, include-all: true}
+url-test: &url-test {type: url-test, url: http://www.apple.com/library/test/success.html, interval: 300, tolerance: 50, timeout: 2000, lazy: true, include-all: true, hidden: true}
 c: &c {type: http, behavior: classical, format: text, interval: 86400}
 # smart: &smart {type: smart, lazy: true, include-all: true, interval: 300, url: 'http://www.apple.com/library/test/success.html', hidden: true, uselightgbm: true}
 
@@ -85,7 +85,7 @@ proxy-groups:
 
   - name: Streaming
     type: select
-    proxies: [Final, Select]
+    proxies: [Final,🇺🇸 US, 🇪🇺 EU, Select]
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/DisneyPlus.png
 
   - name: Apple
@@ -125,7 +125,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/DE.png
 
 rule-providers:
-  # 测速网站
+  # Speedtest
   speedtest:
     type: http
     behavior: domain
@@ -134,7 +134,7 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/domainset/speedtest.txt
     path: ./sukkaw_ruleset/speedtest.txt
 
-  # CDN 相关
+  # CDN
   cdn_domainset:
     type: http
     behavior: domain
@@ -142,7 +142,6 @@ rule-providers:
     interval: 43200
     url: https://ruleset.skk.moe/Clash/domainset/cdn.txt
     path: ./sukkaw_ruleset/cdn_domainset.txt
-
   cdn_non_ip:
     type: http
     behavior: classical
@@ -157,7 +156,7 @@ rule-providers:
     path: ./rules/Emby.list
     url: https://raw.githubusercontent.com/yugubbk/Surge/master/Source/Emby.list
 
-  # 流媒体相关
+  # Streaming
   stream_non_ip:
     type: http
     behavior: classical
@@ -166,7 +165,7 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/non_ip/stream.txt
     path: ./sukkaw_ruleset/stream_non_ip.txt
 
-  # Telegram 相关
+  # Telegram
   telegram_non_ip:
     type: http
     behavior: classical
@@ -175,7 +174,7 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/non_ip/telegram.txt
     path: ./sukkaw_ruleset/telegram_non_ip.txt
 
-  # Apple 相关
+  # Apple & Microsoft CDN
   apple_cdn:
     type: http
     behavior: domain
@@ -183,7 +182,6 @@ rule-providers:
     interval: 43200
     url: https://ruleset.skk.moe/Clash/domainset/apple_cdn.txt
     path: ./sukkaw_ruleset/apple_cdn.txt
-
   microsoft_cdn_non_ip:
     type: http
     behavior: classical
@@ -192,7 +190,7 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/non_ip/microsoft_cdn.txt
     path: ./sukkaw_ruleset/microsoft_cdn_non_ip.txt
 
-  # 下载相关
+  # Download
   download_domainset:
     type: http
     behavior: domain
@@ -200,7 +198,6 @@ rule-providers:
     interval: 43200
     url: https://ruleset.skk.moe/Clash/domainset/download.txt
     path: ./sukkaw_ruleset/download_domainset.txt
-
   download_non_ip:
     type: http
     behavior: classical
@@ -209,7 +206,7 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/non_ip/download.txt
     path: ./sukkaw_ruleset/download_non_ip.txt
 
-  # Apple CN 相关
+  # Apple CN
   apple_cn_non_ip:
     type: http
     behavior: classical
@@ -218,7 +215,7 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/non_ip/apple_cn.txt
     path: ./sukkaw_ruleset/apple_cn_non_ip.txt
 
-  # Apple 和 Microsoft 服务
+  # Apple & Microsoft
   apple_services:
     type: http
     behavior: classical
@@ -226,7 +223,6 @@ rule-providers:
     interval: 43200
     url: https://ruleset.skk.moe/Clash/non_ip/apple_services.txt
     path: ./sukkaw_ruleset/apple_services.txt
-
   microsoft_non_ip:
     type: http
     behavior: classical
@@ -235,7 +231,7 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/non_ip/microsoft.txt
     path: ./sukkaw_ruleset/microsoft_non_ip.txt
 
-  # AI 相关
+  # AIGC
   ai_non_ip:
     type: http
     behavior: classical
@@ -243,8 +239,15 @@ rule-providers:
     interval: 43200
     url: https://ruleset.skk.moe/Clash/non_ip/ai.txt
     path: ./sukkaw_ruleset/ai_non_ip.txt
+  apple_intelligence_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/non_ip/apple_intelligence.txt
+    path: ./sukkaw_ruleset/apple_intelligence_non_ip.txt
 
-  # 全球和国内域名
+  # Global
   global_non_ip:
     type: http
     behavior: classical
@@ -253,6 +256,7 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/non_ip/global.txt
     path: ./sukkaw_ruleset/global_non_ip.txt
 
+  # CN
   domestic_non_ip:
     type: http
     behavior: classical
@@ -260,7 +264,6 @@ rule-providers:
     interval: 43200
     url: https://ruleset.skk.moe/Clash/non_ip/domestic.txt
     path: ./sukkaw_ruleset/domestic_non_ip.txt
-
   direct_non_ip:
     type: http
     behavior: classical
@@ -269,7 +272,7 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/non_ip/direct.txt
     path: ./sukkaw_ruleset/direct_non_ip.txt
 
-  # 内网相关
+  # LAN
   lan_non_ip:
     type: http
     behavior: classical
@@ -278,7 +281,7 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/non_ip/lan.txt
     path: ./sukkaw_ruleset/lan_non_ip.txt
 
-  # DNS 劫持
+  # DNSHijacking
   DNSHijacking:
     <<: *c
     path: ./rules/DNSHijacking.list
@@ -293,7 +296,7 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/ip/telegram.txt
     path: ./sukkaw_ruleset/telegram_ip.txt
 
-  # 流媒体 IP
+  # Streaming IP
   stream_ip:
     type: http
     behavior: classical
@@ -302,7 +305,7 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/ip/stream.txt
     path: ./sukkaw_ruleset/stream_ip.txt
 
-  # 局域网 IP
+  # LAN IP
   lan_ip:
     type: http
     behavior: classical
@@ -311,7 +314,7 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/ip/lan.txt
     path: ./sukkaw_ruleset/lan_ip.txt
 
-  # 国内 IP
+  # CN IP
   domestic_ip:
     type: http
     behavior: classical
@@ -319,7 +322,6 @@ rule-providers:
     interval: 43200
     url: https://ruleset.skk.moe/Clash/ip/domestic.txt
     path: ./sukkaw_ruleset/domestic_ip.txt
-
   china_ip:
     type: http
     behavior: ipcidr
@@ -327,7 +329,6 @@ rule-providers:
     interval: 43200
     url: https://ruleset.skk.moe/Clash/ip/china_ip.txt
     path: ./sukkaw_ruleset/china_ip.txt
-
   china_ip_ipv6:
     type: http
     behavior: ipcidr
@@ -337,38 +338,39 @@ rule-providers:
     path: ./sukkaw_ruleset/china_ipv6.txt
 
 rules:  
-  # 测速网站
+  # Speedtest
   - RULE-SET,speedtest,Select
-  # CDN 相关
+  # CDN
   - RULE-SET,cdn_domainset,CDN & Download
   - RULE-SET,cdn_non_ip,CDN & Download
   # Emby
   - RULE-SET,Emby,Streaming
-  # 流媒体
+  # Streaming
   - RULE-SET,stream_non_ip,Streaming
   # Telegram
   - RULE-SET,telegram_non_ip,Final
-  # Apple 和 Microsoft CDN
+  # Apple & Microsoft CDN
   - RULE-SET,apple_cdn,CDN & Download
   - RULE-SET,microsoft_cdn_non_ip,CDN & Download
-  # 下载相关
+  # Download
   - RULE-SET,download_domainset,CDN & Download
   - RULE-SET,download_non_ip,CDN & Download
   # Apple CN
   - RULE-SET,apple_cn_non_ip,DIRECT
-  # Apple 和 Microsoft 服务
+  # Apple & Microsoft
   - RULE-SET,apple_services,Apple
   - RULE-SET,microsoft_non_ip,Apple
-  # AI
+  # AIGC
   - RULE-SET,ai_non_ip,AI
-  # 全球域名
+  - RULE-SET,apple_intelligence_non_ip,AI
+  # Global
   - RULE-SET,global_non_ip,Final
-  # 国内域名
+  # CN
   - RULE-SET,domestic_non_ip,DIRECT
   - RULE-SET,direct_non_ip,DIRECT
-  # 内网域名
+  # LAN
   - RULE-SET,lan_non_ip,DIRECT
-  # DNS 劫持
+  # DNSHijacking
   - RULE-SET,DNSHijacking,Final
   # Telegram ASN
   - IP-ASN,59930,🇺🇸 US
@@ -376,13 +378,13 @@ rules:
   - IP-ASN,62041,🇪🇺 EU
   # Telegram IP
   - RULE-SET,telegram_ip,Final
-  # 流媒体 IP
+  # Streaming IP
   - RULE-SET,stream_ip,Streaming
-  # 局域网 IP
+  # LAN IP
   - RULE-SET,lan_ip,DIRECT
-  # 国内 IP
+  # CN IP
   - RULE-SET,domestic_ip,DIRECT
   - RULE-SET,china_ip,DIRECT
   - RULE-SET,china_ip_ipv6,DIRECT
-  # 兜底规则
+  # Final
   - MATCH,Final
