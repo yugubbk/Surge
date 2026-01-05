@@ -80,12 +80,12 @@ proxy-groups:
 
   - name: AI
     type: select
-    proxies: [🇺🇸 US, 🇪🇺 EU, Select]
+    proxies: [🇺🇸 US, Select]
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
 
   - name: Streaming
     type: select
-    proxies: [Final,🇺🇸 US, 🇪🇺 EU, Select]
+    proxies: [Final,🇺🇸 US, Select]
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/DisneyPlus.png
 
   - name: Apple
