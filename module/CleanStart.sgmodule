@@ -6,15 +6,7 @@
 
 [Body Rewrite]
 # 酷安开屏
-http-response-jq ^https:\/\/api\.coolapk\.com\/v6\/main\/init '
-  .data |= map(
-    select(.entityId? as $id | [944,945,6390] | index($id) | not)
-    | if .entityId == 20131
-      then .entities |= map(select(.title != "酷品"))
-      else .
-      end
-  )
-'
+http-response-jq ^https:\/\/api\.coolapk\.com\/v6\/main\/init '.data |= map(select(.entityId? | [944,945,6390] | index(.) | not) | if .entityId == 20131 then .entities |= map(select(.title != "酷品")) else . end)'
 
 [Map Local]
 # 闲鱼开屏
