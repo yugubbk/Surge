@@ -119,11 +119,6 @@ proxy-groups:
     filter: "^(?=.*((?i)(🇺🇸|美国|\b(US|United States)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
 
-  - name: 🇪🇺 EU
-    <<: *url-test
-    filter: "(?i)^(?!.*emby).*(🇧🇪|🇧🇬|🇨🇿|🇩🇰|🇩🇪|🇪🇪|🇮🇪|🇬🇷|🇪🇸|🇫🇷|🇭🇷|🇮🇹|🇨🇾|🇱🇻|🇱🇹|🇱🇺|🇭🇺|🇲🇹|🇳🇱|🇦🇹|🇵🇱|🇵🇹|🇷🇴|🇸🇮|🇸🇰|🇫🇮|🇸🇪|🇨🇭|🇬🇧|🇪🇺).*"
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/DE.png
-
 rule-providers:
   # Speedtest
   speedtest:
@@ -375,7 +370,7 @@ rules:
   # Telegram ASN
   - IP-ASN,59930,🇺🇸 US
   - IP-ASN,62014,🇸🇬 SG
-  - IP-ASN,62041,🇪🇺 EU
+  - IP-ASN,62041,🇺🇸 US
   # Telegram IP
   - RULE-SET,telegram_ip,Final
   # Streaming IP
