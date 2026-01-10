@@ -6,7 +6,9 @@ DOMAIN-SUFFIX,uve.weibo.com,DIRECT,extended-matching
 # 百度贴吧开屏
 DOMAIN,180.76.76.200,REJECT,extended-matching,pre-matching
 IP-CIDR,180.76.76.200/32,REJECT,no-resolve,pre-matching
-
+# 知乎开屏
+DOMAIN,appcloud.zhihu.com,REJECT,extended-matching,pre-matching
+DOMAIN,appcloud2.in.zhihu.com,REJECT,extended-matching,pre-matching
 [URL Rewrite]
 
 [Body Rewrite]
@@ -22,6 +24,9 @@ http-response-jq ^https?:\/\/tiebac\.baidu\.com\/c\/s\/sync$ 'delpaths([["home_s
 ^https:\/\/bootrealtime\.uve\.weibo\.com\/v[23]\/ad\/realtime data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 # 闲鱼开屏
 ^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlecommerce\.splash\.ads\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+# 知乎开屏
+^https:\/\/appcloud2\.zhihu\.com\/v3\/resource\?group_name=mp data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 
 [Script]
 # 微博开屏
@@ -31,6 +36,9 @@ http-response-jq ^https?:\/\/tiebac\.baidu\.com\/c\/s\/sync$ 'delpaths([["home_s
 # 小红书开屏
 移除开屏广告 config = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/system_service\/config\?, script-path=https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js, requires-body=true
 移除开屏广告 splash_config = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/system_service\/splash_config, script-path=https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js, requires-body=true
+# 知乎开屏
+拦截服务器推送配置 config = type=http-response, pattern=^https:\/\/appcloud2\.zhihu\.com\/v3\/config, script-path=https://kelee.one/Resource/JavaScript/Zhihu/Zhihu_remove_ads.js, requires-body=true
+拦截服务器推送配置 config all = type=http-response, pattern=^https:\/\/m-cloud\.zhihu\.com\/api\/cloud\/zhihu\/config\/all\?, script-path=https://kelee.one/Resource/JavaScript/Zhihu/Zhihu_remove_ads.js, requires-body=true
 
 [MITM]
-hostname = %APPEND% api.coolapk.com, bootrealtime.uve.weibo.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com, acs.m.goofish.com, tiebac.baidu.com, edith.xiaohongshu.com
+hostname = %APPEND% api.coolapk.com, bootrealtime.uve.weibo.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com, acs.m.goofish.com, tiebac.baidu.com, edith.xiaohongshu.com, appcloud2.zhihu.com, m-cloud.zhihu.com
