@@ -1,12 +1,19 @@
 #!name=去开屏广告
 
 [Rule]
+# 百度贴吧开屏
+DOMAIN,180.76.76.200,REJECT,extended-matching,pre-matching
+IP-CIDR,180.76.76.200/32,REJECT,no-resolve,pre-matching
 
 [URL Rewrite]
 
 [Body Rewrite]
 # 酷安开屏
 http-response-jq ^https:\/\/api\.coolapk\.com\/v6\/main\/init '.data |= map(select(.entityId? | [944,945,6390] | index(.) | not) | if .entityId == 20131 then .entities |= map(select(.title != "酷品")) else . end)'
+# 百度贴吧开屏
+http-response-jq ^https?:\/\/tiebac\.baidu\.com\/c\/s\/sync$ 'delpaths([["next_start"]])'
+http-response-jq ^https?:\/\/tiebac\.baidu\.com\/c\/s\/sync$ 'delpaths([["screen_fill_data_result"]])'
+http-response-jq ^https?:\/\/tiebac\.baidu\.com\/c\/s\/sync$ 'delpaths([["home_screen_ad"]])'
 
 [Map Local]
 # 闲鱼开屏
@@ -20,4 +27,4 @@ http-response-jq ^https:\/\/api\.coolapk\.com\/v6\/main\/init '.data |= map(sele
 
 
 [MITM]
-hostname = %APPEND% api.coolapk.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com, acs.m.goofish.com
+hostname = %APPEND% api.coolapk.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com, acs.m.goofish.com, tiebac.baidu.com
