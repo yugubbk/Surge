@@ -9,6 +9,7 @@ IP-CIDR,180.76.76.200/32,REJECT,no-resolve,pre-matching
 # 知乎开屏
 DOMAIN,appcloud.zhihu.com,REJECT,extended-matching,pre-matching
 DOMAIN,appcloud2.in.zhihu.com,REJECT,extended-matching,pre-matching
+
 [URL Rewrite]
 
 [Body Rewrite]
@@ -26,7 +27,6 @@ http-response-jq ^https?:\/\/tiebac\.baidu\.com\/c\/s\/sync$ 'delpaths([["home_s
 ^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlecommerce\.splash\.ads\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 # 知乎开屏
 ^https:\/\/appcloud2\.zhihu\.com\/v3\/resource\?group_name=mp data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-
 
 [Script]
 # 微博开屏
