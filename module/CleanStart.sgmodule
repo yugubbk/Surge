@@ -1,6 +1,8 @@
 #!name=去开屏广告
 
 [Rule]
+# 微博开屏
+DOMAIN-SUFFIX,uve.weibo.com,DIRECT,extended-matching
 # 百度贴吧开屏
 DOMAIN,180.76.76.200,REJECT,extended-matching,pre-matching
 IP-CIDR,180.76.76.200/32,REJECT,no-resolve,pre-matching
@@ -16,6 +18,8 @@ http-response-jq ^https?:\/\/tiebac\.baidu\.com\/c\/s\/sync$ 'delpaths([["screen
 http-response-jq ^https?:\/\/tiebac\.baidu\.com\/c\/s\/sync$ 'delpaths([["home_screen_ad"]])'
 
 [Map Local]
+# 微博开屏
+^https:\/\/bootrealtime\.uve\.weibo\.com\/v[23]\/ad\/realtime data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 # 闲鱼开屏
 ^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlecommerce\.splash\.ads\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
@@ -27,4 +31,4 @@ http-response-jq ^https?:\/\/tiebac\.baidu\.com\/c\/s\/sync$ 'delpaths([["home_s
 
 
 [MITM]
-hostname = %APPEND% api.coolapk.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com, acs.m.goofish.com, tiebac.baidu.com
+hostname = %APPEND% api.coolapk.com, bootrealtime.uve.weibo.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com, acs.m.goofish.com, tiebac.baidu.com
