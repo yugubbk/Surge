@@ -10,7 +10,7 @@ http-response-jq ^https:\/\/api\.coolapk\.com\/v6\/main\/init '.data |= map(sele
 
 [Map Local]
 # 闲鱼开屏
-^https?:\/\/acs\.m\.goofish\.com\/gw\/mtop.*splash\.ads data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlecommerce\.splash\.ads\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 [Script]
 # 微博开屏
@@ -20,4 +20,4 @@ http-response-jq ^https:\/\/api\.coolapk\.com\/v6\/main\/init '.data |= map(sele
 
 
 [MITM]
-hostname = %APPEND% api.coolapk.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com
+hostname = %APPEND% api.coolapk.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com, acs.m.goofish.com
