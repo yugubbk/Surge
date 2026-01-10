@@ -20,4 +20,4 @@ http-response-jq ^https:\/\/api\.coolapk\.com\/v6\/main\/init '.data |= map(sele
 [Script]
 
 [MITM]
-hostname = %APPEND% api.coolapk.com, uve.weibo.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com
+hostname = %APPEND% api.coolapk.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com
