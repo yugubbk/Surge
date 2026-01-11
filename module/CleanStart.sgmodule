@@ -12,6 +12,9 @@ DOMAIN,appcloud2.in.zhihu.com,REJECT,extended-matching,pre-matching
 DOMAIN,sugar.zhihu.com,REJECT,extended-matching,pre-matching
 # 12306开屏
 DOMAIN,ad.12306.cn,DIRECT,extended-matching
+# 高德地图开屏
+DOMAIN,amap-aos-info-nogw.amap.com,REJECT,extended-matching,pre-matching
+DOMAIN,free-aos-cdn-image.amap.com,REJECT,extended-matching,pre-matching
 
 [URL Rewrite]
 
@@ -47,6 +50,8 @@ http-response-jq ^https?:\/\/tiebac\.baidu\.com\/c\/s\/sync$ 'delpaths([["home_s
 拦截服务器推送配置 config all = type=http-response, pattern=^https:\/\/m-cloud\.zhihu\.com\/api\/cloud\/zhihu\/config\/all\?, script-path=https://kelee.one/Resource/JavaScript/Zhihu/Zhihu_remove_ads.js, requires-body=true
 # 12306开屏
 移除12306开屏广告 = type=http-request, pattern=^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$, script-path=https://kelee.one/Resource/JavaScript/12306/12306_remove_splashscreen_ads.js, requires-body=true
+# 高德地图
+移除开屏广告 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\?, script-path=https://kelee.one/Resource/JavaScript/Amap/Amap_remove_ads.js, requires-body=true
 
 [MITM]
-hostname = %APPEND% api.coolapk.com, bootrealtime.uve.weibo.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com, acs.m.goofish.com, tiebac.baidu.com, edith.xiaohongshu.com, appcloud2.zhihu.com, m-cloud.zhihu.com, ad.12306.cn
+hostname = %APPEND% api.coolapk.com, bootrealtime.uve.weibo.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com, acs.m.goofish.com, tiebac.baidu.com, edith.xiaohongshu.com, appcloud2.zhihu.com, m-cloud.zhihu.com, ad.12306.cn, m5.amap.com
