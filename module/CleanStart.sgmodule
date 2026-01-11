@@ -49,4 +49,4 @@ http-response-jq ^https?:\/\/tiebac\.baidu\.com\/c\/s\/sync$ 'delpaths([["home_s
 移除12306开屏广告 = type=http-request, pattern=^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$, script-path=https://kelee.one/Resource/JavaScript/12306/12306_remove_splashscreen_ads.js, requires-body=true
 
 [MITM]
-hostname = %APPEND% api.coolapk.com, bootrealtime.uve.weibo.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com, acs.m.goofish.com, tiebac.baidu.com, edith.xiaohongshu.com, appcloud2.zhihu.com, m-cloud.zhihu.com
+hostname = %APPEND% api.coolapk.com, bootrealtime.uve.weibo.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com, acs.m.goofish.com, tiebac.baidu.com, edith.xiaohongshu.com, appcloud2.zhihu.com, m-cloud.zhihu.com, ad.12306.cn
