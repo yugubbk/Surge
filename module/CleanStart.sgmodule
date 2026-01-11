@@ -10,6 +10,8 @@ IP-CIDR,180.76.76.200/32,REJECT,no-resolve,pre-matching
 DOMAIN,appcloud.zhihu.com,REJECT,extended-matching,pre-matching
 DOMAIN,appcloud2.in.zhihu.com,REJECT,extended-matching,pre-matching
 DOMAIN,sugar.zhihu.com,REJECT,extended-matching,pre-matching
+# 12306开屏
+DOMAIN,ad.12306.cn,DIRECT,extended-matching
 
 [URL Rewrite]
 
@@ -43,6 +45,8 @@ http-response-jq ^https?:\/\/tiebac\.baidu\.com\/c\/s\/sync$ 'delpaths([["home_s
 # 知乎开屏
 拦截服务器推送配置 config = type=http-response, pattern=^https:\/\/appcloud2\.zhihu\.com\/v3\/config, script-path=https://kelee.one/Resource/JavaScript/Zhihu/Zhihu_remove_ads.js, requires-body=true
 拦截服务器推送配置 config all = type=http-response, pattern=^https:\/\/m-cloud\.zhihu\.com\/api\/cloud\/zhihu\/config\/all\?, script-path=https://kelee.one/Resource/JavaScript/Zhihu/Zhihu_remove_ads.js, requires-body=true
+# 12306开屏
+移除12306开屏广告 = type=http-request, pattern=^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$, script-path=https://kelee.one/Resource/JavaScript/12306/12306_remove_splashscreen_ads.js, requires-body=true
 
 [MITM]
 hostname = %APPEND% api.coolapk.com, bootrealtime.uve.weibo.com, bootpreload.uve.weibo.com, sdkapp.uve.weibo.com, wbapp.uve.weibo.com, acs.m.goofish.com, tiebac.baidu.com, edith.xiaohongshu.com, appcloud2.zhihu.com, m-cloud.zhihu.com
