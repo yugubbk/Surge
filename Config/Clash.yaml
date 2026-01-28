@@ -120,11 +120,11 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
 
 rule-providers:
-  # Crypto
-  crypto:
+  # Proxy+
+  Proxy+:
     <<: *c
     path: ./rules/crypto.txt
-    url: https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Crypto.list
+    url: https://raw.githubusercontent.com/yugubbk/Surge/master/Source/Proxy+.list
 
   # Speedtest
   speedtest:
@@ -150,12 +150,6 @@ rule-providers:
     interval: 43200
     url: https://ruleset.skk.moe/Clash/non_ip/cdn.txt
     path: ./sukkaw_ruleset/cdn_non_ip.txt
-
-  # Emby
-  Emby:
-    <<: *c
-    path: ./rules/Emby.list
-    url: https://raw.githubusercontent.com/yugubbk/Surge/master/Source/Emby.list
 
   # Streaming
   stream_non_ip:
@@ -339,15 +333,13 @@ rule-providers:
     path: ./sukkaw_ruleset/china_ipv6.txt
 
 rules:  
-  # Crypto
-  - RULE-SET,crypto,🇺🇸 US
+  # Proxy+
+  - RULE-SET,Proxy+,🇺🇸 US
   # Speedtest
   - RULE-SET,speedtest,Select
   # CDN
   - RULE-SET,cdn_domainset,CDN & Download
   - RULE-SET,cdn_non_ip,CDN & Download
-  # Emby
-  - RULE-SET,Emby,Streaming
   # Streaming
   - RULE-SET,stream_non_ip,Streaming
   # Telegram
