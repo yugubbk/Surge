@@ -64,6 +64,7 @@ dns:
 
 # 锚点参数
 url-test: &url-test {type: url-test, url: http://www.apple.com/library/test/success.html, interval: 300, tolerance: 50, timeout: 2000, lazy: true, include-all: true, hidden: true}
+per-select: &per-select {type: select, url: http://www.apple.com/library/test/success.html, timeout: 2000, include-all: true, hidden: true}
 c: &c {type: http, behavior: classical, format: text, interval: 86400}
 # smart: &smart {type: smart, lazy: true, include-all: true, interval: 300, url: 'http://www.apple.com/library/test/success.html', hidden: true, uselightgbm: true}
 
@@ -100,22 +101,22 @@ proxy-groups:
 
   #分隔,下面是地区分组
   - name: 🇭🇰 HK
-    <<: *url-test
+    <<: *per-select
     filter: "^(?=.*((?i)(🇭🇰|🇹🇼|🇲🇴|香港|台湾|澳门|\b(HK|Hong|TW|Tai|Taiwan|MO|Macao)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
 
   - name: 🇯🇵 JP
-    <<: *url-test
+    <<: *per-select
     filter: "^(?=.*((?i)(🇯🇵|🇰🇷|日本|韩国|\b(JP|Japan|KR|Korea)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
 
   - name: 🇸🇬 SG
-    <<: *url-test
+    <<: *per-select
     filter: "^(?=.*((?i)(🇸🇬|新加坡|狮|\b(SG|Singapore)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
 
   - name: 🇺🇸 US
-    <<: *url-test
+    <<: *per-select
     filter: "^(?=.*((?i)(🇺🇸|美国|\b(US|United States)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
 
