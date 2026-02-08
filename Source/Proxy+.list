@@ -23,8 +23,11 @@ DOMAIN-SUFFIX,upbit.com
 # > Binane
 DOMAIN-SUFFIX,binance.com
 DOMAIN-SUFFIX,binance.info
+DOMAIN-SUFFIX,binance.org
 DOMAIN-SUFFIX,bnbstatic.com
 DOMAIN-SUFFIX,bntrace.com
+DOMAIN-SUFFIX,bsappapi.com
+DOMAIN-SUFFIX,bscdnweb.com
 DOMAIN-SUFFIX,yingwangtech.cloud
 # > Bitget
 DOMAIN-SUFFIX,bitget.com
@@ -44,6 +47,7 @@ DOMAIN-SUFFIX,wsot2022.com
 # > OKX
 DOMAIN-SUFFIX,okx.com
 DOMAIN-SUFFIX,okx.com.cdn.cloudflare.net
+DOMAIN-KEYWORD,okx-dns
 # >> Emby
 # Youno
 DOMAIN-SUFFIX,younoyes.com
