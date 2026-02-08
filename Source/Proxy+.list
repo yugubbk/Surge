@@ -1,4 +1,4 @@
-# >> Crypto
+# >> Crypto https://github.com/ConnersHua/RuleGo/blob/master/Surge/Ruleset/Extra/Crypto.list
 DOMAIN-SUFFIX,aicoin.com
 DOMAIN-SUFFIX,backpack.exchange
 DOMAIN-SUFFIX,bitcointalk.org
