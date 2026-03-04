@@ -81,12 +81,12 @@ proxy-groups:
 
   - name: AI
     type: select
-    proxies: [🇺🇸 US, Select]
+    proxies: [🇯🇵 JP, Select]
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
 
   - name: Streaming
     type: select
-    proxies: [Final,🇺🇸 US, Select]
+    proxies: [Final, Select]
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/DisneyPlus.png
 
   - name: Apple
@@ -114,11 +114,6 @@ proxy-groups:
     <<: *per-select
     filter: "^(?=.*((?i)(🇸🇬|新加坡|狮|\b(SG|Singapore)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
-
-  - name: 🇺🇸 US
-    <<: *per-select
-    filter: "^(?=.*((?i)(🇺🇸|美国|\b(US|United States)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
 
 rule-providers:
   # Proxy+
@@ -160,6 +155,12 @@ rule-providers:
     interval: 43200
     url: https://ruleset.skk.moe/Clash/non_ip/stream.txt
     path: ./sukkaw_ruleset/stream_non_ip.txt
+  
+  # Emby
+  Emby:
+    <<: *c
+    path: ./rules/Emby.txt
+    url: https://raw.githubusercontent.com/yugubbk/Surge/master/Source/Emby.list
 
   # Telegram
   telegram_non_ip:
@@ -335,7 +336,7 @@ rule-providers:
 
 rules:  
   # Proxy+
-  - RULE-SET,Proxy+,🇺🇸 US
+  - RULE-SET,Proxy+,🇯🇵 JP
   # Speedtest
   - RULE-SET,speedtest,Select
   # CDN
@@ -343,6 +344,8 @@ rules:
   - RULE-SET,cdn_non_ip,CDN & Download
   # Streaming
   - RULE-SET,stream_non_ip,Streaming
+  # Emby
+  - RULE-SET,Emby,Streaming
   # Telegram
   - RULE-SET,telegram_non_ip,Final
   # Apple & Microsoft CDN
@@ -369,9 +372,9 @@ rules:
   # DNSHijacking
   - RULE-SET,DNSHijacking,Final
   # Telegram ASN
-  - IP-ASN,59930,🇺🇸 US
+  - IP-ASN,59930,🇯🇵 JP
   - IP-ASN,62014,🇸🇬 SG
-  - IP-ASN,62041,🇺🇸 US
+  - IP-ASN,62041,🇯🇵 JP
   # Telegram IP
   - RULE-SET,telegram_ip,Final
   # Streaming IP
