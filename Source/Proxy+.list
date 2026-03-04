@@ -48,10 +48,5 @@ DOMAIN-SUFFIX,wsot2022.com
 DOMAIN-SUFFIX,okx.com
 DOMAIN-SUFFIX,okx.com.cdn.cloudflare.net
 DOMAIN-KEYWORD,okx-dns
-# >> Emby
-# Youno
-DOMAIN-SUFFIX,younoyes.com
-# SNTP
-DOMAIN-SUFFIX,cn2gias.uk
 # >> NodeSeek
 DOMAIN-SUFFIX,nodeseek.com
