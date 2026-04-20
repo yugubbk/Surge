@@ -20,7 +20,6 @@ geox-url:
   asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
 
 find-process-mode: strict
-global-client-fingerprint: chrome
 
 profile:
   store-selected: true
@@ -340,6 +339,8 @@ rule-providers:
     path: ./sukkaw_ruleset/china_ipv6.txt
 
 rules:  
+  - AND,((NETWORK,udp),(DST-PORT,443),(RULE-SET,ai_non_ip)),REJECT-DROP
+  - AND,((NETWORK,udp),(DST-PORT,443),(RULE-SET,apple_intelligence_non_ip)),REJECT-DROP
   # Proxy+
   - RULE-SET,Proxy+,🇯🇵 JP
   # Speedtest
