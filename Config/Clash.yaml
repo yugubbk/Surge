@@ -100,25 +100,25 @@ proxy-groups:
 
   #分隔,下面是地区分组
   - name: 🇭🇰 HK
-    <<: *per-select
-    filter: "^(?=.*((?i)(🇭🇰|🇹🇼|🇲🇴|香港|台湾|澳门|\b(HK|Hong|TW|Tai|Taiwan|MO|Macao)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
+    <<: *url-test
+    filter: "(?i)^(?=.*(🇭🇰|🇹🇼|🇲🇴|香港|台湾|澳门|HK|Hong|TW|Tai|Taiwan|MO|Macao))(?!.*(GAME|HOME|EMBY)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
 
   - name: 🇯🇵 JP
-    <<: *per-select
-    filter: "^(?=.*((?i)(🇯🇵|🇰🇷|日本|韩国|\b(JP|Japan|KR|Korea)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
+    <<: *url-test
+    filter: "(?i)^(?=.*(🇯🇵|🇰🇷|日本|韩国|JP|Japan|KR|Korea))(?!.*(GAME|HOME|EMBY)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
 
   - name: 🇸🇬 SG
-    <<: *per-select
-    filter: "^(?=.*((?i)(🇸🇬|新加坡|狮|\b(SG|Singapore)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
+    <<: *url-test
+    filter: "(?i)^(?=.*(🇸🇬|新加坡|狮|SG|Singapore))(?!.*(GAME|HOME|EMBY)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
   
   - name: 🇺🇸 US
-    <<: *per-select
-    filter: "^(?=.*((?i)(🇺🇸|美国|\b(US|United States)\b)))(?!.*((?i)\b(GAME|HOME|EMBY)\b)).*$"
+    <<: *url-test
+    filter: "(?i)^(?=.*(🇺🇸|美国|US|United States))(?!.*(GAME|HOME|EMBY)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
-
+    
 rule-providers:
   # Proxy+
   Proxy+:
