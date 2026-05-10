@@ -12,6 +12,14 @@ allow-lan: false
 unified-delay: true
 tcp-concurrent: true
 
+# smart
+# enable model auto update, the default is false
+lgbm-auto-update: true
+# model auto update interval, the default is 72 (hours)
+lgbm-update-interval: 72
+# model update url
+lgbm-url: "https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model.bin"
+
 geodata-mode: true
 geox-url:
   geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
@@ -24,6 +32,8 @@ find-process-mode: strict
 profile:
   store-selected: true
   store-fake-ip: true
+  # smart smart-collector-size: data collection file size, the default is 100 (MB)
+  smart-collector-size: 100
 
 sniffer:
   enable: true
@@ -62,10 +72,10 @@ dns:
     - system
 
 # 锚点参数
-url-test: &url-test {type: url-test, url: http://www.apple.com/library/test/success.html, interval: 300, tolerance: 50, timeout: 2000, lazy: true, include-all: true, hidden: true}
+url-test: &url-test {type: url-test, url: http://www.apple.com/library/test/success.html, interval: 300, tolerance: 50, timeout: 2000, include-all: true, hidden: true}
 per-select: &per-select {type: select, url: http://www.apple.com/library/test/success.html, timeout: 2000, include-all: true, hidden: true}
 c: &c {type: http, behavior: classical, format: text, interval: 86400}
-# smart: &smart {type: smart, lazy: true, include-all: true, interval: 300, url: 'http://www.apple.com/library/test/success.html', hidden: true, uselightgbm: true}
+smart: &smart {type: smart, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: false, url: http://www.apple.com/library/test/success.html, timeout: 2000, include-all: true, hidden: true}
 
 proxy-groups:
   - name: Final
@@ -100,22 +110,22 @@ proxy-groups:
 
   #分隔,下面是地区分组
   - name: 🇭🇰 HK
-    <<: *url-test
+    <<: *smart
     filter: "(?i)^(?=.*(🇭🇰|🇹🇼|🇲🇴|香港|台湾|澳门|HK|Hong|TW|Tai|Taiwan|MO|Macao))(?!.*(GAME|HOME|EMBY)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
 
   - name: 🇯🇵 JP
-    <<: *url-test
+    <<: *smart
     filter: "(?i)^(?=.*(🇯🇵|🇰🇷|日本|韩国|JP|Japan|KR|Korea))(?!.*(GAME|HOME|EMBY)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
 
   - name: 🇸🇬 SG
-    <<: *url-test
+    <<: *smart
     filter: "(?i)^(?=.*(🇸🇬|新加坡|狮|SG|Singapore))(?!.*(GAME|HOME|EMBY)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
   
   - name: 🇺🇸 US
-    <<: *url-test
+    <<: *smart
     filter: "(?i)^(?=.*(🇺🇸|美国|US|United States))(?!.*(GAME|HOME|EMBY)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
     
