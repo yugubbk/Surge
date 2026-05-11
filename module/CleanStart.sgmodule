@@ -4,6 +4,5 @@
 # 萤石云去广告
 ^https:\/\/api\.ys7\.com\/api\/ads - reject
 
-
 [MITM]
 hostname = %APPEND% api.ys7.com
