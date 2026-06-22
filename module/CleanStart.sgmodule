@@ -1,8 +1,12 @@
 #!name=去开屏广告
 
+[Body Rewrite]
+# 酷安去广告
+http-response-jq ^https:\/\/api\.coolapk\.com\/v6\/main\/init '.data |= map(select(.entityId? | [944,945,6390] | index(.) | not) | if .entityId == 20131 then .entities |= map(select(.title != "酷品")) else . end)'
+
 [URL Rewrite]
 # 萤石云去广告
 ^https:\/\/api\.ys7\.com\/api\/ads - reject
 
 [MITM]
-hostname = %APPEND% api.ys7.com
+hostname = %APPEND% api.ys7.com, api.coolapk.com
