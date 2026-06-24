@@ -80,7 +80,7 @@ smart: &smart {type: smart, uselightgbm: true, collectdata: false, sample-rate: 
 proxy-groups:
   - name: Final
     type: select
-    proxies: [🇭🇰 HK, 🇯🇵 JP, Select]
+    proxies: [🇭🇰 HK, Select]
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 
   - name: Select
@@ -90,12 +90,12 @@ proxy-groups:
 
   - name: AI
     type: select
-    proxies: [🇯🇵 JP, Select]
+    proxies: [🇺🇸 US, Select]
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
 
   - name: Streaming
     type: select
-    proxies: [Final, Select]
+    proxies: [Final, 🇺🇸 US, Select]
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/DisneyPlus.png
 
   - name: Apple
@@ -113,11 +113,6 @@ proxy-groups:
     <<: *smart
     filter: "(?i)^(?=.*(🇭🇰|🇹🇼|🇲🇴|香港|台湾|澳门|HK|Hong|TW|Tai|Taiwan|MO|Macao))(?!.*(GAME|HOME|EMBY)).*$"
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
-
-  - name: 🇯🇵 JP
-    <<: *smart
-    filter: "(?i)^(?=.*(🇯🇵|🇰🇷|日本|韩国|JP|Japan|KR|Korea))(?!.*(GAME|HOME|EMBY)).*$"
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
 
   - name: 🇸🇬 SG
     <<: *smart
@@ -350,7 +345,7 @@ rule-providers:
 
 rules:  
   # Proxy+
-  - RULE-SET,Proxy+,🇯🇵 JP
+  - RULE-SET,Proxy+,🇺🇸 US
   # Speedtest
   - RULE-SET,speedtest,Select
   # CDN
