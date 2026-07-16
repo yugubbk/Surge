@@ -345,7 +345,7 @@ rule-providers:
 
 rules:  
   # Proxy+
-  - RULE-SET,Proxy+,🇺🇸 US
+  - RULE-SET,Proxy+,Final
   # Speedtest
   - RULE-SET,speedtest,Select
   # CDN
@@ -358,8 +358,8 @@ rules:
   # Telegram
   - RULE-SET,telegram_non_ip,Final
   # Apple & Microsoft CDN
-  - RULE-SET,apple_cdn,CDN & Download
-  - RULE-SET,microsoft_cdn_non_ip,CDN & Download
+  - RULE-SET,apple_cdn,DIRECT
+  - RULE-SET,microsoft_cdn_non_ip,DIRECT
   # Download
   - RULE-SET,download_domainset,CDN & Download
   - RULE-SET,download_non_ip,CDN & Download
