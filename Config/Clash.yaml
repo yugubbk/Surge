@@ -311,6 +311,15 @@ rule-providers:
     url: https://ruleset.skk.moe/Clash/ip/stream.txt
     path: ./sukkaw_ruleset/stream_ip.txt
 
+  # AIGC IP
+  ai_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 43200
+    url: https://ruleset.skk.moe/Clash/ip/ai.txt
+    path: ./sukkaw_ruleset/ai_ip.txt
+
   # LAN IP
   lan_ip:
     type: http
@@ -388,6 +397,8 @@ rules:
   - RULE-SET,telegram_ip,Final
   # Streaming IP
   - RULE-SET,stream_ip,Streaming
+  # AIGC IP
+  - RULE-SET,ai_ip,AI
   # LAN IP
   - RULE-SET,lan_ip,DIRECT
   # CN IP
